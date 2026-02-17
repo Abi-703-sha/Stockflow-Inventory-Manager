@@ -1,0 +1,92 @@
+{% extends 'my_app/base.html' %}
+
+{% block title %}Inventory List - StockFlow{% endblock %}
+
+{% block content %}
+<!-- Custom Dashboard Navbar -->
+<nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
+    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+    <div class="nav-buttons">
+        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
+        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+    </div>
+</nav>
+
+<div class="dashboard-wrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <a href="{% url 'dashboard' %}" class="sidebar-btn">
+            <span>📊</span> Dashboard
+        </a>
+        <a href="{% url 'add_stock' %}" class="sidebar-btn">
+            <span>+</span> Add Product
+        </a>
+        <a href="{% url 'inventory_list' %}" class="sidebar-btn active">
+            <span>📋</span> Inventory List
+        </a>
+        <a href="{% url 'stock_management' %}" class="sidebar-btn">
+            <span>📦</span> Stock Management
+        </a>
+        <a href="{% url 'user_management' %}" class="sidebar-btn">
+            <span>👥</span> User Management
+        </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dashboard-container">
+            <div style="margin-bottom: 3rem;">
+                <h1 style="font-size: 3rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Inventory List
+                </h1>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Full list of your stock items and management controls.</p>
+            </div>
+
+            <!-- Stock Table -->
+            <div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: rgba(255,255,255,0.05);">
+                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Item Name</th>
+                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Category</th>
+                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Quantity</th>
+                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Price</th>
+                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if stocks %}
+                            {% for stock in stocks %}
+                            <tr style="border-bottom: 1px solid var(--border-color); transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                                <td style="padding: 1.25rem 2rem; font-weight: 600;">{{ stock.name }}</td>
+                                <td style="padding: 1.25rem 2rem; color: var(--text-secondary);">{{ stock.category }}</td>
+                                <td style="padding: 1.25rem 2rem;">
+                                    <span style="padding: 0.25rem 0.75rem; border-radius: 2rem; background: {% if stock.quantity < 10 %}rgba(239, 68, 68, 0.1){% else %}rgba(16, 185, 129, 0.1){% endif %}; color: {% if stock.quantity < 10 %}var(--accent){% else %}#34d399{% endif %}; font-weight: 700; font-size: 0.9rem;">
+                                        {{ stock.quantity }}
+                                    </span>
+                                </td>
+                                <td style="padding: 1.25rem 2rem; font-weight: 600;">${{ stock.price }}</td>
+                                <td style="padding: 1.25rem 2rem; text-align: center;">
+                                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                                        <a href="{% url 'view_stock' stock.pk %}" class="action-btn view-btn">View</a>
+                                        <a href="{% url 'update_stock' stock.pk %}" class="action-btn update-btn">Update</a>
+                                        <a href="{% url 'delete_stock' stock.pk %}" class="action-btn delete-btn">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5" style="padding: 4rem; text-align: center; color: var(--text-secondary);">
+                                    No stock items found. Use the sidebar to add products.
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

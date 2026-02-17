@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stockflow Inventory Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'my_app/css/style.css' %}">
+    <style>
+        body {
+            background: linear-gradient(rgba(2, 6, 23, 0.75), rgba(2, 6, 23, 0.8)), 
+                        url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=2000') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            color: white !important;
+        }
+        .logo {
+            background: linear-gradient(to right, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card {
+            background: rgba(15, 23, 42, 0.6) !important;
+            backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: #06b6d4 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'home' %}" class="logo">Stockflow</a>
+        <div class="nav-buttons">
+            <a href="{% url 'login' %}" style="text-decoration: none; color: white; margin-right: 1.5rem; font-weight: 500;">Login</a>
+            <a href="{% url 'signup' %}" style="text-decoration: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 0.6rem 1.2rem; border-radius: 0.5rem; font-weight: 600; color: white; transition: transform 0.3s ease;">Sign Up</a>
+        </div>
+    </nav>
+
+    <main style="padding-top: 10rem; text-align: center; flex: 1;">
+        <div style="margin-bottom: 5rem;">
+            <h1 style="font-size: 5.5rem; font-weight: 800; margin-bottom: 2rem; line-height: 1; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                StockFlow Inventory<br><span style="color: #06b6d4; -webkit-text-fill-color: #06b6d4;">Manager</span>
+            </h1>
+            <p style="font-size: 1.4rem; color: #cbd5e1; max-width: 750px; margin: 0 auto 4rem; line-height: 1.6; font-weight: 400;">
+                The next generation of supply chain intelligence. Streamline your operations with our high-performance tracking and secure management ecosystem.
+            </p>
+            <a href="{% url 'signup' %}" class="btn" style="width: auto; padding: 1.1rem 3rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">Get Started Now</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; padding: 0 2rem 5rem; max-width: 1200px; margin: 0 auto;">
+            <div class="stat-card" style="text-align: left; padding: 2.5rem;">
+                <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem;">Real-time Tracking</h3>
+                <p style="font-size: 1rem; font-weight: 400; color: var(--text-secondary); line-height: 1.7;">
+                    Monitor stock levels across all locations instantly. Never run out of essential items with automated low-stock alerts and live updates.
+                </p>
+            </div>
+            
+            <div class="stat-card" style="text-align: left; padding: 2.5rem;">
+                <h3 style="color: var(--secondary); font-size: 1.5rem; margin-bottom: 1rem;">Smart Analytics</h3>
+                <p style="font-size: 1rem; font-weight: 400; color: var(--text-secondary); line-height: 1.7;">
+                    Gain deep insights into your inventory trends. Visualize data with beautiful interactive charts and generate professional reports.
+                </p>
+            </div>
+
+            <div class="stat-card" style="text-align: left; padding: 2.5rem;">
+                <h3 style="color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem;">Secure & Scalable</h3>
+                <p style="font-size: 1rem; font-weight: 400; color: var(--text-secondary); line-height: 1.7;">
+                    Built with military-grade encryption. Scale your inventory management effortlessly as your business grows with robust permissions.
+                </p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

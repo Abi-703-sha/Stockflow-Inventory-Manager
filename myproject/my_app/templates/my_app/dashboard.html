@@ -1,0 +1,117 @@
+{% extends 'my_app/base.html' %}
+
+{% block title %}Dashboard - StockFlow{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.85)), 
+                    url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=2000') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+    }
+    .command-center {
+        background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)), 
+                    url('https://images.unsplash.com/photo-1565891741441-64926e441838?auto=format&fit=crop&q=80&w=1000') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        border-radius: 2rem;
+        padding: 3.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Custom Dashboard Navbar -->
+<nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
+    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+    <div class="nav-buttons">
+        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
+        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+    </div>
+</nav>
+
+<div class="dashboard-wrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div style="padding: 1rem 1.25rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); font-weight: 700;">Menu</div>
+        <a href="{% url 'dashboard' %}" class="sidebar-btn active">
+            <i class="fas fa-chart-pie"></i> Dashboard
+        </a>
+        <a href="{% url 'add_stock' %}" class="sidebar-btn">
+            <i class="fas fa-plus-circle"></i> Add Product
+        </a>
+        <a href="{% url 'inventory_list' %}" class="sidebar-btn">
+            <i class="fas fa-boxes-stacked"></i> Inventory List
+        </a>
+        <a href="{% url 'stock_management' %}" class="sidebar-btn">
+            <i class="fas fa-truck-ramp-box"></i> Stock Management
+        </a>
+        <a href="{% url 'user_management' %}" class="sidebar-btn">
+            <i class="fas fa-users-gear"></i> User Management
+        </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dashboard-container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+                <div>
+                    <h1 style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">
+                        StockFlow <span style="color: var(--primary); -webkit-text-fill-color: var(--primary);">Inventory</span>
+                    </h1>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-signal" style="color: var(--accent); font-size: 0.8rem;"></i> Operational status: Optimal
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid" style="margin-bottom: 4rem;">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-box-open"></i></div>
+                    <h3>Total Products</h3>
+                    <p>{{ total_products }}</p>
+                </div>
+                <div class="stat-card {% if low_stock > 0 %}error{% endif %}">
+                    <div class="stat-icon" style="color: var(--warning);"><i class="fas fa-triangle-exclamation"></i></div>
+                    <h3>Low Stock</h3>
+                    <p>{{ low_stock }}</p>
+                </div>
+                <div class="stat-card {% if out_of_stock > 0 %}error{% endif %}">
+                    <div class="stat-icon" style="color: #ef4444;"><i class="fas fa-ban"></i></div>
+                    <h3>Out of Stock</h3>
+                    <p>{{ out_of_stock }}</p>
+                </div>
+            </div>
+
+            <div style="display: block; width: 100%;">
+                <div class="command-center">
+                    <!-- Decorative background element -->
+                    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--primary); filter: blur(100px); opacity: 0.1; pointer-events: none;"></div>
+                    
+                    <h2 style="color: white; font-size: 2rem; margin-bottom: 1rem; font-weight: 800;">Command Center</h2>
+                    <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem; max-width: 600px;">
+                        Welcome back to the StockFlow hub. Your supply chain management is fully synchronized. Currently tracking <strong>{{ total_products }}</strong> high-value assets across your inventory.
+                    </p>
+                    <div style="display: flex; gap: 1.5rem;">
+                        <a href="{% url 'inventory_list' %}" class="btn" style="width: auto; padding: 1rem 2.5rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-list-check"></i> Manage Assets
+                        </a>
+                        <a href="{% url 'add_stock' %}" class="btn" style="width: auto; padding: 1rem 2.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-plus"></i> New Entry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'my_app/base.html' %}
+
+{% block title %}Update Stock - StockFlow{% endblock %}
+
+{% block content %}
+<div class="auth-container" style="max-width: 600px;">
+    <div class="auth-header">
+        <h1>Update Stock</h1>
+        <p>Editing details for {{ stock.name }}.</p>
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Item Name</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            {{ form.category }}
+        </div>
+        <div class="form-group">
+            <label>Quantity</label>
+            {{ form.quantity }}
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            {{ form.price }}
+        </div>
+        
+        <button type="submit" class="btn">Update Stock</button>
+    </form>
+
+    <div class="auth-footer">
+        <a href="{% url 'dashboard' %}">Cancel and Return</a>
+    </div>
+</div>
+
+<style>
+    input {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        color: white;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+    input:focus {
+        outline: none;
+        border-color: var(--primary);
+    }
+</style>
+{% endblock %}

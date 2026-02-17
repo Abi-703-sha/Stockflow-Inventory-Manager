@@ -1,0 +1,39 @@
+{% extends 'my_app/base.html' %}
+
+{% block title %}View Stock - StockFlow{% endblock %}
+
+{% block content %}
+<div class="auth-container" style="max-width: 600px;">
+    <div class="auth-header">
+        <h1>Stock Details</h1>
+        <p>Viewing information for {{ stock.name }}.</p>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 1rem; border: 1px solid var(--border-color);">
+        <div style="margin-bottom: 1.5rem;">
+            <label style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Name</label>
+            <p style="font-size: 1.25rem; font-weight: 700;">{{ stock.name }}</p>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <label style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Category</label>
+            <p style="font-size: 1.1rem;">{{ stock.category }}</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+                <label style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Quantity</label>
+                <p style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">{{ stock.quantity }}</p>
+            </div>
+            <div>
+                <label style="color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase;">Price</label>
+                <p style="font-size: 1.5rem; font-weight: 800; color: var(--secondary);">${{ stock.price }}</p>
+            </div>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 1.5rem;">Last Updated: {{ stock.last_updated }}</p>
+    </div>
+
+    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+        <a href="{% url 'update_stock' stock.pk %}" class="btn" style="text-decoration: none; text-align: center; flex: 1;">Edit</a>
+        <a href="{% url 'dashboard' %}" class="btn" style="background: rgba(255,255,255,0.1); text-decoration: none; text-align: center; flex: 1;">Back</a>
+    </div>
+</div>
+{% endblock %}

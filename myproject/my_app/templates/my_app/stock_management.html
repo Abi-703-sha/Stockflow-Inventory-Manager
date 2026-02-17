@@ -1,0 +1,65 @@
+{% extends 'my_app/base.html' %}
+
+{% block title %}Stock Management - StockFlow{% endblock %}
+
+{% block content %}
+<nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
+    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+    <div class="nav-buttons">
+        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
+        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+    </div>
+</nav>
+
+<div class="dashboard-wrapper">
+    <aside class="sidebar">
+        <a href="{% url 'dashboard' %}" class="sidebar-btn">
+            <span>📊</span> Dashboard
+        </a>
+        <a href="{% url 'add_stock' %}" class="sidebar-btn">
+            <span>+</span> Add Product
+        </a>
+        <a href="{% url 'inventory_list' %}" class="sidebar-btn">
+            <span>📋</span> Inventory List
+        </a>
+        <a href="{% url 'stock_management' %}" class="sidebar-btn active">
+            <span>📦</span> Stock Management
+        </a>
+    </aside>
+
+    <main class="main-content">
+        <div class="dashboard-container">
+            <h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem;">
+                Stock Management
+            </h1>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <a href="{% url 'stock_in' %}" style="text-decoration: none;">
+                    <div style="background: var(--surface); padding: 3rem; border-radius: 1.5rem; border: 1px solid var(--border-color); text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--primary)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border-color)'">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">⬇️</span>
+                        <h2 style="color: white; margin-bottom: 0.5rem;">Stock In</h2>
+                        <p style="color: var(--text-secondary);">Add quantity to existing products</p>
+                    </div>
+                </a>
+
+                <a href="{% url 'stock_out' %}" style="text-decoration: none;">
+                    <div style="background: var(--surface); padding: 3rem; border-radius: 1.5rem; border: 1px solid var(--border-color); text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border-color)'">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">⬆️</span>
+                        <h2 style="color: white; margin-bottom: 0.5rem;">Stock Out</h2>
+                        <p style="color: var(--text-secondary);">Remove quantity from existing products</p>
+                    </div>
+                </a>
+
+                <a href="{% url 'stock_history' %}" style="text-decoration: none;">
+                    <div style="background: var(--surface); padding: 3rem; border-radius: 1.5rem; border: 1px solid var(--border-color); text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--text-secondary)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border-color)'">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🕒</span>
+                        <h2 style="color: white; margin-bottom: 0.5rem;">Stock History</h2>
+                        <p style="color: var(--text-secondary);">View all stock movements</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

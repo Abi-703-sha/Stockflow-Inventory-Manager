@@ -1,0 +1,91 @@
+{% extends 'my_app/base.html' %}
+
+{% block title %}About - StockFlow{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.85)), 
+                    url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+        color: white !important;
+    }
+    .auth-container {
+        background: rgba(15, 23, 42, 0.6) !important;
+        backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    }
+    .auth-header h1 span {
+        color: var(--primary) !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+    }
+    .feature-card {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+        transform: translateY(-5px);
+        border-color: var(--primary);
+    }
+    .intro-text, .auth-header p, .feature-card p {
+        color: #cbd5e1 !important;
+    }
+    h3, strong {
+        color: white !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
+    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+    <div class="nav-buttons">
+        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-primary); margin-right: 1.5rem; font-weight: 600;">About</a>
+        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+    </div>
+</nav>
+
+<div class="auth-wrapper" style="margin-top: 8rem;">
+    <div class="auth-container" style="max-width: 800px; text-align: center;">
+        <div class="auth-header">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">About <span style="background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">StockFlow</span></h1>
+            <p style="font-size: 1.25rem; line-height: 1.6; color: var(--text-secondary);">The Future of Intelligent Inventory Management</p>
+        </div>
+
+        <div style="margin: 3rem 0; text-align: left; line-height: 1.8;">
+            <p class="intro-text" style="margin-bottom: 1.5rem;">
+                <strong>StockFlow</strong> is more than just a tracking tool; it's a comprehensive ecosystem designed to streamline your business operations. Born from the need for speed, accuracy, and elegance, StockFlow empowers businesses of all sizes to manage their assets with unprecedented ease.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;">
+                <div class="feature-card" style="padding: 2rem; border-radius: 1rem;">
+                    <h3>🚀 Unmatched Speed</h3>
+                    <p>Real-time updates and lightning-fast transitions ensure your workflow never skips a beat.</p>
+                </div>
+                <div class="feature-card" style="padding: 2rem; border-radius: 1rem;">
+                    <h3>🛡️ Ironclad Security</h3>
+                    <p>Advanced user roles and secure transaction logs keep your inventory data safe and accountable.</p>
+                </div>
+                <div class="feature-card" style="padding: 2rem; border-radius: 1rem;">
+                    <h3>📊 Deep Insights</h3>
+                    <p>Visual dashboards and comprehensive history reports reveal the pulse of your stock movements.</p>
+                </div>
+                <div class="feature-card" style="padding: 2rem; border-radius: 1rem;">
+                    <h3>✨ Premium Experience</h3>
+                    <p>A stunning, distraction-free interface designed for modern professionals who value aesthetics.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem;">
+            <a href="{% url 'dashboard' %}" class="btn" style="width: auto; padding: 1rem 3rem; text-decoration: none;">Explore Your Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
