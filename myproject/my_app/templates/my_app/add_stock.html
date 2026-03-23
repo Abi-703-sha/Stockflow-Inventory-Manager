@@ -4,105 +4,105 @@
 
 {% block content %}
 <nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
-    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
-    <div class="nav-buttons">
-        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
-        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
-        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
-    </div>
+<a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+<div class="nav-buttons">
+<a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+<a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
+<a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+</div>
 </nav>
 
 <div class="dashboard-wrapper">
-    <aside class="sidebar">
-        <a href="{% url 'dashboard' %}" class="sidebar-btn">
-            <span>📊</span> Dashboard
-        </a>
-        <a href="{% url 'add_stock' %}" class="sidebar-btn active">
-            <span>+</span> Add Product
-        </a>
-        <a href="{% url 'inventory_list' %}" class="sidebar-btn">
-            <span>📋</span> Inventory List
-        </a>
-        <a href="{% url 'stock_management' %}" class="sidebar-btn">
-            <span>📦</span> Stock Management
-        </a>
-        <a href="{% url 'user_management' %}" class="sidebar-btn">
-            <span>👥</span> User Management
-        </a>
-    </aside>
+<aside class="sidebar">
+<a href="{% url 'dashboard' %}" class="sidebar-btn">
+<span>📊</span> Dashboard
+</a>
+<a href="{% url 'add_stock' %}" class="sidebar-btn active">
+<span>+</span> Add Product
+</a>
+<a href="{% url 'inventory_list' %}" class="sidebar-btn">
+<span>📋</span> Inventory List
+</a>
+<a href="{% url 'stock_management' %}" class="sidebar-btn">
+<span>📦</span> Stock Management
+</a>
+<a href="{% url 'user_management' %}" class="sidebar-btn">
+<span>👥</span> User Management
+</a>
+</aside>
 
-    <main class="main-content">
-        <div class="dashboard-container">
-            <h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem;">
-                Add New Product
-            </h1>
+<main class="main-content">
+<div class="dashboard-container">
+<h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem;">
+Add New Product
+</h1>
 
-            <!-- Add Product Form -->
-            <div style="background: var(--surface); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); margin-bottom: 3rem;">
-                <h2 style="color: white; margin-bottom: 1.5rem; font-size: 1.25rem;">Product Details</h2>
-                <form method="post" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: flex-end;">
-                    {% csrf_token %}
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label>Item Name</label>
-                        {{ form.name }}
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label>Category</label>
-                        {{ form.category }}
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label>Quantity</label>
-                        {{ form.quantity }}
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label>Price</label>
-                        {{ form.price }}
-                    </div>
-                    <button type="submit" class="btn" style="height: 3rem; margin-top: 0;">Add Product</button>
-                </form>
-            </div>
+<!-- Add Product Form -->
+<div style="background: var(--surface); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); margin-bottom: 3rem;">
+<h2 style="color: white; margin-bottom: 1.5rem; font-size: 1.25rem;">Product Details</h2>
+<form method="post" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: flex-end;">
+{% csrf_token %}
+<div class="form-group" style="margin-bottom: 0;">
+<label>Item Name</label>
+{{ form.name }}
+</div>
+<div class="form-group" style="margin-bottom: 0;">
+<label>Category</label>
+{{ form.category }}
+</div>
+<div class="form-group" style="margin-bottom: 0;">
+<label>Quantity</label>
+{{ form.quantity }}
+</div>
+<div class="form-group" style="margin-bottom: 0;">
+<label>Price</label>
+{{ form.price }}
+</div>
+<button type="submit" class="btn" style="height: 3rem; margin-top: 0;">Add Product</button>
+</form>
+</div>
 
-            <!-- Recent Items Mini-Table -->
-            {% if stocks %}
-            <div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden;">
-                <div style="padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="color: white; font-size: 1rem;">Recently Added Items</h3>
-                    <a href="{% url 'inventory_list' %}" style="color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 600;">View Full List →</a>
-                </div>
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="background: rgba(255,255,255,0.02);">
-                            <th style="padding: 1rem 2rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase;">Item Name</th>
-                            <th style="padding: 1rem 2rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase;">Category</th>
-                            <th style="padding: 1rem 2rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase;">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for stock in stocks|slice:":5" %}
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 1rem 2rem; font-weight: 600;">{{ stock.name }}</td>
-                            <td style="padding: 1rem 2rem; color: var(--text-secondary);">{{ stock.category }}</td>
-                            <td style="padding: 1rem 2rem;">{{ stock.quantity }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% endif %}
-        </div>
-    </main>
+<!-- Recent Items Mini-Table -->
+{% if stocks %}
+<div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden;">
+<div style="padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+<h3 style="color: white; font-size: 1rem;">Recently Added Items</h3>
+<a href="{% url 'inventory_list' %}" style="color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 600;">View Full List →</a>
+</div>
+<table style="width: 100%; border-collapse: collapse; text-align: left;">
+<thead>
+<tr style="background: rgba(255,255,255,0.02);">
+<th style="padding: 1rem 2rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase;">Item Name</th>
+<th style="padding: 1rem 2rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase;">Category</th>
+<th style="padding: 1rem 2rem; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase;">Quantity</th>
+</tr>
+</thead>
+<tbody>
+{% for stock in stocks|slice:":5" %}
+<tr style="border-bottom: 1px solid var(--border-color);">
+<td style="padding: 1rem 2rem; font-weight: 600;">{{ stock.name }}</td>
+<td style="padding: 1rem 2rem; color: var(--text-secondary);">{{ stock.category }}</td>
+<td style="padding: 1rem 2rem;">{{ stock.quantity }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
+</div>
+</main>
 </div>
 
 <style>
-    input {
-        width: 100%;
-        padding: 0.875rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
-        border-radius: 0.75rem;
-        color: white;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-    }
+input {
+width: 100%;
+padding: 0.875rem 1rem;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--border-color);
+border-radius: 0.75rem;
+color: white;
+font-size: 0.95rem;
+transition: all 0.3s ease;
+}
 </style>
 {% endblock %}

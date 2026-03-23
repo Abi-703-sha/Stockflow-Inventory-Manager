@@ -4,75 +4,75 @@
 
 {% block content %}
 <nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
-    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
-    <div class="nav-buttons">
-        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
-        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
-        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
-    </div>
+<a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+<div class="nav-buttons">
+<a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+<a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
+<a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+</div>
 </nav>
 
 <div class="dashboard-wrapper">
-    <aside class="sidebar">
-        <a href="{% url 'dashboard' %}" class="sidebar-btn">
-            <span>📊</span> Dashboard
-        </a>
-        <a href="{% url 'add_stock' %}" class="sidebar-btn">
-            <span>+</span> Add Product
-        </a>
-        <a href="{% url 'inventory_list' %}" class="sidebar-btn">
-            <span>📋</span> Inventory List
-        </a>
-        <a href="{% url 'stock_management' %}" class="sidebar-btn">
-            <span>📦</span> Stock Management
-        </a>
-        <a href="{% url 'user_management' %}" class="sidebar-btn active">
-            <span>👥</span> User Management
-        </a>
-    </aside>
+<aside class="sidebar">
+<a href="{% url 'dashboard' %}" class="sidebar-btn">
+<span>📊</span> Dashboard
+</a>
+<a href="{% url 'add_stock' %}" class="sidebar-btn">
+<span>+</span> Add Product
+</a>
+<a href="{% url 'inventory_list' %}" class="sidebar-btn">
+<span>📋</span> Inventory List
+</a>
+<a href="{% url 'stock_management' %}" class="sidebar-btn">
+<span>📦</span> Stock Management
+</a>
+<a href="{% url 'user_management' %}" class="sidebar-btn active">
+<span>👥</span> User Management
+</a>
+</aside>
 
-    <main class="main-content">
-        <div class="dashboard-container">
-            <h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem;">
-                User Management
-            </h1>
+<main class="main-content">
+<div class="dashboard-container">
+<h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem;">
+User Management
+</h1>
 
-            <div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden; margin-bottom: 2rem;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="background: rgba(255,255,255,0.05);">
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Name</th>
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Email</th>
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Role</th>
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 1.25rem 2rem; font-weight: 600;">{{ user.username }}</td>
-                            <td style="padding: 1.25rem 2rem; color: var(--text-secondary);">{{ user.email }}</td>
-                            <td style="padding: 1.25rem 2rem;">
-                                <span style="padding: 0.25rem 0.75rem; border-radius: 2rem; background: rgba(99, 102, 241, 0.1); color: var(--primary); font-weight: 700; font-size: 0.85rem;">
-                                    {{ user.userprofile.get_role_display|default:"Staff" }}
-                                </span>
-                            </td>
-                            <td style="padding: 1.25rem 2rem;">
-                                <span style="display: flex; align-items: center; gap: 0.5rem; color: #34d399; font-weight: 600; font-size: 0.9rem;">
-                                    <div style="width: 8px; height: 8px; border-radius: 50%; background: #34d399;"></div>
-                                    {{ user.userprofile.get_status_display|default:"Active" }}
-                                </span>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+<div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden; margin-bottom: 2rem;">
+<table style="width: 100%; border-collapse: collapse; text-align: left;">
+<thead>
+<tr style="background: rgba(255,255,255,0.05);">
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Name</th>
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Email</th>
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Role</th>
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Status</th>
+</tr>
+</thead>
+<tbody>
+{% for user in users %}
+<tr style="border-bottom: 1px solid var(--border-color);">
+<td style="padding: 1.25rem 2rem; font-weight: 600;">{{ user.username }}</td>
+<td style="padding: 1.25rem 2rem; color: var(--text-secondary);">{{ user.email }}</td>
+<td style="padding: 1.25rem 2rem;">
+<span style="padding: 0.25rem 0.75rem; border-radius: 2rem; background: rgba(99, 102, 241, 0.1); color: var(--primary); font-weight: 700; font-size: 0.85rem;">
+{{ user.userprofile.get_role_display|default:"Staff" }}
+</span>
+</td>
+<td style="padding: 1.25rem 2rem;">
+<span style="display: flex; align-items: center; gap: 0.5rem; color: #34d399; font-weight: 600; font-size: 0.9rem;">
+<div style="width: 8px; height: 8px; border-radius: 50%; background: #34d399;"></div>
+{{ user.userprofile.get_status_display|default:"Active" }}
+</span>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
 
-            <div style="display: flex; justify-content: center;">
-                <a href="{% url 'add_user' %}" class="btn" style="width: auto; padding: 0.75rem 2.5rem; text-decoration: none;">Add User</a>
-            </div>
-        </div>
-    </main>
+<div style="display: flex; justify-content: center;">
+<a href="{% url 'add_user' %}" class="btn" style="width: auto; padding: 0.75rem 2.5rem; text-decoration: none;">Add User</a>
+</div>
+</div>
+</main>
 </div>
 {% endblock %}

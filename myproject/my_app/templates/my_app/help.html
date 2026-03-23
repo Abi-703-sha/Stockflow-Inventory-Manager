@@ -4,107 +4,107 @@
 
 {% block extra_css %}
 <style>
-    body {
-        background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.85)), 
-                    url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2000') !important;
-        background-size: cover !important;
-        background-position: center !important;
-        background-attachment: fixed !important;
-    }
-    .auth-container {
-        background: rgba(15, 23, 42, 0.6) !important;
-        backdrop-filter: blur(12px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-        padding: 3rem !important;
-    }
-    .auth-header h1 span {
-        color: var(--primary) !important;
-    }
-    section h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-    section p {
-        color: #cbd5e1 !important;
-    }
-    li {
-        color: #cbd5e1 !important;
-        margin-bottom: 0.5rem;
-    }
+body {
+background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.85)), 
+    url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2000') !important;
+background-size: cover !important;
+background-position: center !important;
+background-attachment: fixed !important;
+}
+.auth-container {
+background: rgba(15, 23, 42, 0.6) !important;
+backdrop-filter: blur(12px) saturate(180%);
+border: 1px solid rgba(255, 255, 255, 0.1) !important;
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+padding: 3rem !important;
+}
+.auth-header h1 span {
+color: var(--primary) !important;
+}
+section h2 {
+font-size: 1.5rem;
+font-weight: 700;
+}
+section p {
+color: #cbd5e1 !important;
+}
+li {
+color: #cbd5e1 !important;
+margin-bottom: 0.5rem;
+}
 </style>
 {% endblock %}
 
 {% block content %}
 <nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
-    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
-    <div class="nav-buttons">
-        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
-        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-primary); margin-right: 1.5rem; font-weight: 600;">Help</a>
-        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
-    </div>
+<a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+<div class="nav-buttons">
+<a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+<a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-primary); margin-right: 1.5rem; font-weight: 600;">Help</a>
+<a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+</div>
 </nav>
 
 <div class="auth-wrapper" style="margin-top: 8rem; align-items: flex-start;">
-    <div class="auth-container" style="max-width: 900px;">
-        <div class="auth-header">
-            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Help & <span style="background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">User Guide</span></h1>
-            <p style="color: var(--text-secondary);">Everything you need to know about navigating StockFlow.</p>
-        </div>
+<div class="auth-container" style="max-width: 900px;">
+<div class="auth-header">
+<h1 style="font-size: 3rem; margin-bottom: 1rem;">Help & <span style="background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">User Guide</span></h1>
+<p style="color: var(--text-secondary);">Everything you need to know about navigating StockFlow.</p>
+</div>
 
-        <div style="margin-top: 3rem; display: grid; gap: 2.5rem;">
-            <section>
-                <h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">1</span>
-                    Getting Started
-                </h2>
-                <div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
-                    <p>Once you log in, you'll land on the <strong>Dashboard</strong>. This provides a high-level overview of your total products, items with low stock, and items that are currently out of stock.</p>
-                </div>
-            </section>
+<div style="margin-top: 3rem; display: grid; gap: 2.5rem;">
+<section>
+<h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">1</span>
+    Getting Started
+</h2>
+<div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
+    <p>Once you log in, you'll land on the <strong>Dashboard</strong>. This provides a high-level overview of your total products, items with low stock, and items that are currently out of stock.</p>
+</div>
+</section>
 
-            <section>
-                <h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">2</span>
-                    Managing Products
-                </h2>
-                <div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
-                    <p>Use the <strong>Add Product</strong> button in the sidebar to register new items in your inventory. You can view, update, or delete existing items through the <strong>Inventory List</strong> page.</p>
-                </div>
-            </section>
+<section>
+<h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">2</span>
+    Managing Products
+</h2>
+<div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
+    <p>Use the <strong>Add Product</strong> button in the sidebar to register new items in your inventory. You can view, update, or delete existing items through the <strong>Inventory List</strong> page.</p>
+</div>
+</section>
 
-            <section>
-                <h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">3</span>
-                    Stock In & Stock Out
-                </h2>
-                <div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
-                    <p>To change quantities of existing products, go to <strong>Stock Management</strong>:</p>
-                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
-                        <li><strong>Stock In:</strong> Add quantity to a product when you receive new supply.</li>
-                        <li><strong>Stock Out:</strong> Remove quantity when items are sold or moved.</li>
-                        <li><strong>Stock History:</strong> Review every movement ever recorded.</li>
-                    </ul>
-                </div>
-            </section>
+<section>
+<h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">3</span>
+    Stock In & Stock Out
+</h2>
+<div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
+    <p>To change quantities of existing products, go to <strong>Stock Management</strong>:</p>
+    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+        <li><strong>Stock In:</strong> Add quantity to a product when you receive new supply.</li>
+        <li><strong>Stock Out:</strong> Remove quantity when items are sold or moved.</li>
+        <li><strong>Stock History:</strong> Review every movement ever recorded.</li>
+    </ul>
+</div>
+</section>
 
-            <section>
-                <h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">4</span>
-                    User Administration
-                </h2>
-                <div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
-                    <p>Admins can access <strong>User Management</strong> to create new team member accounts, assign roles (Admin, Manager, Staff), and monitor their active status.</p>
-                </div>
-            </section>
-        </div>
+<section>
+<h2 style="color: white; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+    <span style="background: var(--primary); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">4</span>
+    User Administration
+</h2>
+<div style="color: var(--text-secondary); line-height: 1.7; padding-left: 2.75rem;">
+    <p>Admins can access <strong>User Management</strong> to create new team member accounts, assign roles (Admin, Manager, Staff), and monitor their active status.</p>
+</div>
+</section>
+</div>
 
 
-        <div style="margin-top: 4rem; text-align: center;">
-            <a href="{% url 'dashboard' %}" class="btn" style="width: auto; padding: 1rem 3rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem;">
-                <i class="fas fa-arrow-left"></i> Back to Dashboard
-            </a>
-        </div>
-    </div>
+<div style="margin-top: 4rem; text-align: center;">
+<a href="{% url 'dashboard' %}" class="btn" style="width: auto; padding: 1rem 3rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem;">
+<i class="fas fa-arrow-left"></i> Back to Dashboard
+</a>
+</div>
+</div>
 </div>
 {% endblock %}

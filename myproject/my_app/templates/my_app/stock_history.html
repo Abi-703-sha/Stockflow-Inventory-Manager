@@ -4,76 +4,76 @@
 
 {% block content %}
 <nav style="background: rgba(15, 23, 42, 0.8); border-bottom: 2px solid var(--primary);">
-    <a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
-    <div class="nav-buttons">
-        <a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
-        <a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
-        <a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
-    </div>
+<a href="{% url 'dashboard' %}" class="logo">StockFlow</a>
+<div class="nav-buttons">
+<a href="{% url 'about' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">About</a>
+<a href="{% url 'help' %}" style="text-decoration: none; color: var(--text-secondary); margin-right: 1.5rem; font-weight: 500;">Help</a>
+<a href="{% url 'logout' %}" style="text-decoration: none; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: var(--accent);">Logout</a>
+</div>
 </nav>
 
 <div class="dashboard-wrapper">
-    <aside class="sidebar">
-        <a href="{% url 'dashboard' %}" class="sidebar-btn">
-            <span>📊</span> Dashboard
-        </a>
-        <a href="{% url 'add_stock' %}" class="sidebar-btn">
-            <span>+</span> Add Product
-        </a>
-        <a href="{% url 'inventory_list' %}" class="sidebar-btn">
-            <span>📋</span> Inventory List
-        </a>
-        <a href="{% url 'stock_management' %}" class="sidebar-btn active">
-            <span>📦</span> Stock Management
-        </a>
-    </aside>
+<aside class="sidebar">
+<a href="{% url 'dashboard' %}" class="sidebar-btn">
+<span>📊</span> Dashboard
+</a>
+<a href="{% url 'add_stock' %}" class="sidebar-btn">
+<span>+</span> Add Product
+</a>
+<a href="{% url 'inventory_list' %}" class="sidebar-btn">
+<span>📋</span> Inventory List
+</a>
+<a href="{% url 'stock_management' %}" class="sidebar-btn active">
+<span>📦</span> Stock Management
+</a>
+</aside>
 
-    <main class="main-content">
-        <div class="dashboard-container">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    Stock History
-                </h1>
-                <a href="{% url 'stock_management' %}" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Management</a>
-            </div>
+<main class="main-content">
+<div class="dashboard-container">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+<h1 style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+Stock History
+</h1>
+<a href="{% url 'stock_management' %}" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Management</a>
+</div>
 
-            <div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="background: rgba(255,255,255,0.05);">
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Date</th>
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Product</th>
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Type</th>
-                            <th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if history %}
-                            {% for item in history %}
-                            <tr style="border-bottom: 1px solid var(--border-color);">
-                                <td style="padding: 1.25rem 2rem;">{{ item.date }}</td>
-                                <td style="padding: 1.25rem 2rem; font-weight: 600;">{{ item.product.name }}</td>
-                                <td style="padding: 1.25rem 2rem;">
-                                    <span style="padding: 0.25rem 0.75rem; border-radius: 2rem; background: {% if item.transaction_type == 'IN' %}rgba(16, 185, 129, 0.1){% else %}rgba(239, 68, 68, 0.1){% endif %}; color: {% if item.transaction_type == 'IN' %}#34d399{% else %}var(--accent){% endif %}; font-weight: 700; font-size: 0.85rem;">
-                                        {{ item.get_transaction_type_display }}
-                                    </span>
-                                </td>
-                                <td style="padding: 1.25rem 2rem; font-weight: 700; color: {% if item.transaction_type == 'IN' %}#34d399{% else %}var(--accent){% endif %};">
-                                    {% if item.transaction_type == 'IN' %}+{% else %}-{% endif %}{{ item.quantity }}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        {% else %}
-                            <tr>
-                                <td colspan="4" style="padding: 4rem; text-align: center; color: var(--text-secondary);">
-                                    No transaction history found.
-                                </td>
-                            </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
+<div style="background: var(--surface); border-radius: 1.5rem; border: 1px solid var(--border-color); backdrop-filter: blur(12px); overflow: hidden;">
+<table style="width: 100%; border-collapse: collapse; text-align: left;">
+<thead>
+<tr style="background: rgba(255,255,255,0.05);">
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Date</th>
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Product</th>
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Type</th>
+<th style="padding: 1.25rem 2rem; color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase;">Quantity</th>
+</tr>
+</thead>
+<tbody>
+{% if history %}
+{% for item in history %}
+<tr style="border-bottom: 1px solid var(--border-color);">
+    <td style="padding: 1.25rem 2rem;">{{ item.date }}</td>
+    <td style="padding: 1.25rem 2rem; font-weight: 600;">{{ item.product.name }}</td>
+    <td style="padding: 1.25rem 2rem;">
+        <span style="padding: 0.25rem 0.75rem; border-radius: 2rem; background: {% if item.transaction_type == 'IN' %}rgba(16, 185, 129, 0.1){% else %}rgba(239, 68, 68, 0.1){% endif %}; color: {% if item.transaction_type == 'IN' %}#34d399{% else %}var(--accent){% endif %}; font-weight: 700; font-size: 0.85rem;">
+            {{ item.get_transaction_type_display }}
+        </span>
+    </td>
+    <td style="padding: 1.25rem 2rem; font-weight: 700; color: {% if item.transaction_type == 'IN' %}#34d399{% else %}var(--accent){% endif %};">
+        {% if item.transaction_type == 'IN' %}+{% else %}-{% endif %}{{ item.quantity }}
+    </td>
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+    <td colspan="4" style="padding: 4rem; text-align: center; color: var(--text-secondary);">
+        No transaction history found.
+    </td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+</div>
+</div>
+</main>
 </div>
 {% endblock %}
